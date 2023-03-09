@@ -18,4 +18,10 @@ router.get('/:id', async (_req, res) => {
   return res.status(200).json(productById);
 });
 
+router.post('/', async (req, res) => {
+  const product = req.body.name;
+  const newProduct = await productsServices.createProduct(product);
+  return res.status(201).json(newProduct);
+});
+
 module.exports = router;
