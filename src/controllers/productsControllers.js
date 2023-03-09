@@ -1,5 +1,6 @@
 const express = require('express');
 const { productsServices } = require('../services');
+const { validateName } = require('./middlewares/nameValidation');
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get('/:id', async (_req, res) => {
   return res.status(200).json(productById);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validateName, async (req, res) => {
   const product = req.body.name;
   const newProduct = await productsServices.createProduct(product);
   return res.status(201).json(newProduct);
