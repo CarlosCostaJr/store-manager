@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', async (_req, res) => {
   const allProducts = await productsServices.getAllProducts();
+  console.log(allProducts);
   return res.status(200).json(allProducts);
 });
 
