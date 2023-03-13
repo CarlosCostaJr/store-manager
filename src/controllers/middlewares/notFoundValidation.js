@@ -1,16 +1,13 @@
-// const { productsServices } = require('../../services');
+const { productsServices } = require('../../services');
 
-// const notFoundValidation = async (req, res, next) => {
-//   const sales = req.body;
-//   const productById = await productsServices.getProductsById(sale.productId);
-//   for (const sale of sales) {
-//     if (!productById) {
-//       const error = { message: 'Product not found' };
-//       return res.status(404).json(error);
-//     }
-//   });
+const notFoundValidation = async (req, res, next) => {
+  const sales = req.body;
+  sales.forEach(async ({ productId }) => {
+    const productById = await productsServices.getProductsById(productId);
+    if (!productById) throw res.status(404).json({ message: 'Product not found' });
+  });
 
-//   next();
-// };
+  next();
+};
 
-// module.exports = notFoundValidation;
+module.exports = notFoundValidation;

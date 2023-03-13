@@ -1,10 +1,12 @@
 const express = require('express');
 const { salesServices } = require('../services');
+const { fieldValidation } = require('./middlewares/fieldValidation');
+const notFoundValidation = require('./middlewares/notFoundValidation');
 const { salesValidation } = require('./middlewares/salesValidation');
 
 const router = express.Router();
 
-router.post('/', salesValidation, async (req, res) => {
+router.post('/', salesValidation, fieldValidation, notFoundValidation, async (req, res) => {
   const sales = req.body;
   const createSale = await salesServices.createSalesProduct(sales);
   return res.status(201).json({
