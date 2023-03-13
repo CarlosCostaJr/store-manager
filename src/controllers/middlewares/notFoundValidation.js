@@ -2,11 +2,13 @@ const { productsServices } = require('../../services');
 
 const notFoundValidation = async (req, res, next) => {
   const sales = req.body;
-  sales.forEach(async ({ productId }) => {
-    const productById = await productsServices.getProductsById(productId);
-    if (!productById) throw res.status(404).json({ message: 'Product not found' });
-  });
-
+  const promises = sales.map(({ productId }) => productsServices.getProductsById(productId));
+  const products = await Promise.all(promises);
+  for (let i = 0; i < products.length; i += 1) {
+    if (!products[i]) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+  }
   next();
 };
 
