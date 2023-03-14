@@ -1,8 +1,10 @@
 const connection = require('./connection');
 
 const getAllProducts = async () => {
-  const [result] = await connection.execute('SELECT * FROM products;');
-  return result;
+  const [rows] = await connection.execute('SELECT * FROM products;');
+  if (rows.length) {
+    return rows.map((row) => ({ id: row.id, name: row.name }));
+  }
 };
 
 const getProductsById = async (id) => {
