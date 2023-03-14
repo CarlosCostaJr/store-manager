@@ -1,17 +1,17 @@
 const express = require('express');
-const { getAllProducts, getProductsById, createProduct } = require('../services/productsServices');
+const { allProducts, productsById, createProduct } = require('../services/productsServices');
 const { nameValidation } = require('../middlewares/nameValidation');
 
 const router = express.Router();
 
 router.get('/', async (_req, res) => {
-  const allProducts = await getAllProducts();
-  return res.status(200).json(allProducts);
+  const products = await allProducts();
+  return res.status(200).json(products);
 });
 
 router.get('/:id', async (_req, res) => {
   const { id } = _req.params;
-  const productById = await getProductsById(id);
+  const productById = await productsById(id);
   if (!productById) {
     const error = { message: 'Product not found' };
     return res.status(404).json(error);
