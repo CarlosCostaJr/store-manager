@@ -1,8 +1,8 @@
-const { getProductsById } = require('../services/productsServices');
+const { productsById } = require('../services/productsServices');
 
 const notFoundValidation = async (req, res, next) => {
   const sales = req.body;
-  const promises = sales.map(({ productId }) => getProductsById(productId));
+  const promises = sales.map(({ productId }) => productsById(productId));
   const products = await Promise.all(promises);
   for (let i = 0; i < products.length; i += 1) {
     if (!products[i]) {
