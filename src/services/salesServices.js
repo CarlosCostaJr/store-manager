@@ -1,26 +1,28 @@
-const { createSale, setSalesProduct } = require('../models/salesModels');
+const {
+  createSale, setSalesProduct, getAllSales, getAllSalesById,
+} = require('../models/salesModels');
 
-// const getAllSales = async () => {
-//   const allSales = await salesModels.getAllSales();
-//   return allSales;
-// };
+const findAll = async () => {
+  const products = await getAllSales();
+  return { type: null, message: products };
+};
 
-// const saleById = async (id) => {
-//   const [sale] = await getSaleById(id);
-//   return sale;
-// };
+const findAllSalesById = async (id) => {
+  const salesById = await getAllSalesById(id);
+  return salesById;
+};
 
 const createSalesProduct = async (sales) => {
   const insertId = await createSale();
   sales.forEach((sale) => {
     const { productId, quantity } = sale;
-   setSalesProduct(insertId, productId, quantity);
+    setSalesProduct(insertId, productId, quantity);
   });
   return insertId;
 };
 
 module.exports = {
-  // getAllSales,
-  // saleById,
+  findAll,
+  findAllSalesById,
   createSalesProduct,
 };

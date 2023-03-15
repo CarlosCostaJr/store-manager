@@ -1,5 +1,5 @@
 const express = require('express');
-const { createSalesProduct } = require('../services/salesServices');
+const { createSalesProduct, findAll, findAllSalesById } = require('../services/salesServices');
 const { fieldValidation } = require('../middlewares/fieldValidation');
 const notFoundValidation = require('../middlewares/notFoundValidation');
 const { salesValidation } = require('../middlewares/salesValidation');
@@ -15,19 +15,18 @@ router.post('/', salesValidation, fieldValidation, notFoundValidation, async (re
   });
 });
 
-// router.get('/', async (_req, res) => {
-//   const allSales = await salesServices.getAllSales();
-//   return res.status(200).json(allSales);
-// });
+router.get('/', async (_req, res) => {
+  const { message } = await findAll();
+  return res.status(200).json(message);
+});
 
-// router.get('/:id', async (_req, res) => {
-//   const { id } = _req.params;
-//   const salesById = await salesServices.getSaleById(id);
-//   if (!salesById) {
-//     const error = { message: 'Sale not found' };
-//     return res.status(404).json(error);
-//   }
-//   return res.status(200).json(salesById);
-// });
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await findAllSalesById(id);
+  if (result.length === 0) {
+    return res.status(404).json({ message: 'Sale not found' });
+  }
+  return res.status(200).json(result);
+});
 
 module.exports = router;

@@ -19,13 +19,11 @@ describe('createSale', () => {
     const saleId = await createSale();
     expect(saleId).to.equal(1);
   });
-  // describe('setSalesProduct', () => {
-  //   it('deve inserir a venda em sales_products', async () => {
-  //     const mockQuery = 'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);';
-  //     const mockParams = [1, 2, 3];
-  //     const response = await setSalesProduct(...mockParams);
-  //     const stub = sinon.stub(connection, 'execute').resolves(1);
-  //     expect(response).to.deep.equal(1)
-  //   });
-  // });
+    // it('deve inserir a venda em sales_products', async () => {
+    //   const mockQuery = 'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);';
+    //   const mockParams = [1, 2, 3];
+    //   const response = await setSalesProduct(...mockParams);
+    //   const stub = sinon.stub(connection, 'execute').resolves(1);
+    //   expect(response).to.deep.equal(1)
+    // });
 });
