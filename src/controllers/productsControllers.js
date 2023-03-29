@@ -1,6 +1,9 @@
 const express = require('express');
-const { allProducts, productsById, createProduct } = require('../services/productsServices');
+const {
+  allProducts, productsById, createProduct, updateProductById,
+} = require('../services/productsServices');
 const { nameValidation } = require('../middlewares/nameValidation');
+const notFoundValidation = require('../middlewares/notFoundValidation');
 
 const router = express.Router();
 
@@ -23,6 +26,13 @@ router.post('/', nameValidation, async (req, res) => {
   const product = req.body.name;
   const newProduct = await createProduct(product);
   return res.status(201).json(newProduct);
+});
+
+router.put('/:id', nameValidation, notFoundValidation, async (req, res) => {
+  const { id } = req.params;
+  const { name, quantity } = req.body;
+  await updateProductById(name, quantity, id);
+  return res.status(200).json({ id, name, quantity });
 });
 
 module.exports = router;
