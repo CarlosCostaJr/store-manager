@@ -170,7 +170,7 @@ Uma vez na raiz do projeto, execute o comando abaixo para instalar as dependênc
 
    Inicie o servidor
 
-        npm run dev
+        npm run debug
         
 </details>
 </br>
