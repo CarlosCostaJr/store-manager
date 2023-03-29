@@ -141,11 +141,11 @@ Remove uma venda cadastrada no banco de dados
 
 Para executar a aplicação inicie realizando o clone deste repositório com o comando abaixo.
 
-      git clone git@github.com:CarlosCostaJr/talker-manager.git
+      git clone https://github.com/CarlosCostaJr/store-manager.git
 
 Navegue até a raíz do projeto.
 
-      cd talker-manager/
+      cd store-manager/
       
 Uma vez na raiz do projeto, execute o comando abaixo para instalar as dependências do projeto.
     
@@ -156,13 +156,13 @@ Uma vez na raiz do projeto, execute o comando abaixo para instalar as dependênc
    <summary><strong>Rodando a aplicação com o Docker</strong></summary>
   </br>
 
-   Na pasta app do projeto, suba o container <strong>talker_manager</strong> utilizando o docker-compose.yml. Utilize o comando abaixo.
+   Na pasta app do projeto, suba o container <strong>store-manager</strong> utilizando o docker-compose.yml. Utilize o comando abaixo.
 
         docker-compose up -d
 
    Entre no terminal do container
 
-        docker exec -it talker_manager bash
+        docker exec -it store-manager bash
 
    Caso não tenha instalado anteriormente, uma vez no terminal do container, execute o comando abaixo para instalar as dependências do projeto.
 
